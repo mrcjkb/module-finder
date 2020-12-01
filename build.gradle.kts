@@ -156,6 +156,6 @@ publishing {
 
 signing {
   if (isReleaseVersion) {
-    sign(publishing.publications[project.name])
+    sign(publishing.publications[rootProject.name])
   }
 }
