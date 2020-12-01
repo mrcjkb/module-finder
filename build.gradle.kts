@@ -19,13 +19,12 @@ group = "com.github.mrcjkb"
 
 val gitVersion: groovy.lang.Closure<String> by extra
 
-allprojects {
-  version = gitVersion()
-          .replace(".dirty", "")
-          .replace("-", ".")
-          .replaceAfter("SNAPSHOT", "")
-  description = "Gradle plugin that enables the use of non-modular Java dependencies without an \"Automatic Module Name\" in their manifest."
-}
+version = gitVersion()
+        .replace(".dirty", "")
+        .replace("-", ".")
+        .replaceAfter("SNAPSHOT", "")
+
+description = "Gradle plugin that enables the use of non-modular Java dependencies without an \"Automatic Module Name\" in their manifest."
 
 repositories {
   mavenCentral()
@@ -113,8 +112,8 @@ publishing {
         }
       }
       pom {
-        name.set(project.name)
-        description.set(project.description)
+        name.set(rootProject.name)
+        description.set(rootProject.description)
         url.set("https://github.com/MrcJkb/module-finder/")
         developers() {
           developer {
