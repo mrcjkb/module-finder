@@ -24,7 +24,7 @@ allprojects {
           .replace(".dirty", "")
           .replace("-", ".")
           .replaceAfter("SNAPSHOT", "")
-  description = "JavaFX FileChooser and DirectoryChooser adapter that can be used in a Swing application."
+  description = "Gradle plugin that enables the use of non-modular Java dependencies without an \"Automatic Module Name\" in their manifest."
 }
 
 repositories {
@@ -95,72 +95,67 @@ java {
 
 val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
 
-configurePublication(rootProject)
-
-fun configurePublication(project: Project) {
-  publishing {
-    publications {
-      create<MavenPublication>(project.name) {
-        groupId = group.toString()
-        artifactId = project.name
-        version = version
-        from(project.components["java"])
-        project.tasks.findByName("fakeJavadocJar")?.let {
-          // Add fake javadoc Jar for Kotlin projects.
-          artifact(it)
+publishing {
+  publications {
+    create<MavenPublication>(rootProject.name) {
+      groupId = group.toString()
+      artifactId = rootProject.name
+      version = version
+      from(rootProject.components["java"])
+      // Add fake javadoc Jar for OSSRH.
+      artifact(fakeJavadocJar)
+      versionMapping {
+        usage("java-api") {
+          fromResolutionOf("runtimeClasspath")
         }
-        versionMapping {
-          usage("java-api") {
-            fromResolutionOf("runtimeClasspath")
-          }
-          usage("java-runtime") {
-            fromResolutionResult()
+        usage("java-runtime") {
+          fromResolutionResult()
+        }
+      }
+      pom {
+        name.set(project.name)
+        description.set(project.description)
+        url.set("https://github.com/MrcJkb/module-finder/")
+        developers() {
+          developer {
+            id.set("MrcJkb")
+            name.set("Marc Jakobi")
           }
         }
-        pom {
-          name.set(project.name)
-          description.set(project.description)
+        issueManagement {
+          system.set("GitHub")
+          url.set("https://github.com/MrcJkb/module-finder/issues")
+        }
+        scm {
           url.set("https://github.com/MrcJkb/module-finder/")
-          developers() {
-            developer {
-              id.set("MrcJkb")
-              name.set("Marc Jakobi")
-            }
-          }
-          issueManagement {
-            system.set("GitHub")
-            url.set("https://github.com/MrcJkb/module-finder/issues")
-          }
-          scm {
-            url.set("https://github.com/MrcJkb/module-finder/")
-            connection.set("scm:git:git@github.com:MrcJkb/module-finder.git")
-            developerConnection.set("scm:git:ssh://git@github.com:MrcJkb/module-finder.git")
-          }
-          licenses {
-            license {
-              name.set("GPLv2")
-              url.set("https://github.com/MrcJkb/module-finder/blob/main/LICENSE")
-              distribution.set("repo")
-            }
+          connection.set("scm:git:git@github.com:MrcJkb/module-finder.git")
+          developerConnection.set("scm:git:ssh://git@github.com:MrcJkb/module-finder.git")
+        }
+        licenses {
+          license {
+            name.set("GPLv2")
+            url.set("https://github.com/MrcJkb/module-finder/blob/main/LICENSE")
+            distribution.set("repo")
           }
         }
       }
-      repositories {
-        maven {
-          val releasesRepoUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
-          val snapshotsRepoUrl = uri("https://oss.sonatype.org/content/repositories/snapshots/")
-          url = if (isReleaseVersion) releasesRepoUrl else snapshotsRepoUrl
-          credentials {
-            username = project.properties["ossrhUser"]?.toString() ?: "Unknown user"
-            password = project.properties["ossrhPassword"]?.toString() ?: "Unknown password"
-          }
+    }
+    repositories {
+      maven {
+        val releasesRepoUrl = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+        val snapshotsRepoUrl = uri("https://oss.sonatype.org/content/repositories/snapshots/")
+        url = if (isReleaseVersion) releasesRepoUrl else snapshotsRepoUrl
+        credentials {
+          username = project.properties["ossrhUser"]?.toString() ?: "Unknown user"
+          password = project.properties["ossrhPassword"]?.toString() ?: "Unknown password"
         }
       }
     }
   }
-  signing {
-    if (isReleaseVersion) {
-      sign(publishing.publications[project.name])
-    }
+}
+
+signing {
+  if (isReleaseVersion) {
+    sign(publishing.publications[project.name])
   }
 }
