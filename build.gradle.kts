@@ -48,8 +48,8 @@ gradlePlugin {
 }
 
 pluginBundle {
-  website = "https://github.com/MrcJkb/gradle-module-finder"
-  vcsUrl = "https://github.com:MrcJkb/gradle-module-finder.git"
+  website = "https://github.com/MrcJkb/module-finder"
+  vcsUrl = "https://github.com:MrcJkb/module-finder.git"
   tags = listOf("java", "modularity", "jigsaw", "jpms", "automatic-module-name")
 }
 
@@ -63,7 +63,7 @@ tasks.jar {
   manifest {
     attributes["Library"] = rootProject.name
     attributes["Version"] = archiveVersion
-    attributes["Website"] = "https://github.com/MrcJkb/gradle-module-finder"
+    attributes["Website"] = "https://github.com/MrcJkb/module-finder"
     attributes["Built-By"] = System.getProperty("user.name")
     attributes["Build-Timestamp"] = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(Date())
     attributes["Created-by"] = "Gradle ${gradle.gradleVersion}"
@@ -120,7 +120,7 @@ fun configurePublication(project: Project) {
         pom {
           name.set(project.name)
           description.set(project.description)
-          url.set("https://github.com/MrcJkb/gradle-module-finder/")
+          url.set("https://github.com/MrcJkb/module-finder/")
           developers() {
             developer {
               id.set("MrcJkb")
@@ -129,17 +129,17 @@ fun configurePublication(project: Project) {
           }
           issueManagement {
             system.set("GitHub")
-            url.set("https://github.com/MrcJkb/gradle-module-finder/issues")
+            url.set("https://github.com/MrcJkb/module-finder/issues")
           }
           scm {
-            url.set("https://github.com/MrcJkb/gradle-module-finder/")
-            connection.set("scm:git:git@github.com:MrcJkb/gradle-module-finder.git")
-            developerConnection.set("scm:git:ssh://git@github.com:MrcJkb/gradle-module-finder.git")
+            url.set("https://github.com/MrcJkb/module-finder/")
+            connection.set("scm:git:git@github.com:MrcJkb/module-finder.git")
+            developerConnection.set("scm:git:ssh://git@github.com:MrcJkb/module-finder.git")
           }
           licenses {
             license {
               name.set("GPLv2")
-              url.set("https://github.com/MrcJkb/gradle-module-finder/blob/main/LICENSE")
+              url.set("https://github.com/MrcJkb/module-finder/blob/main/LICENSE")
               distribution.set("repo")
             }
           }
