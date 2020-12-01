@@ -34,7 +34,7 @@ Simply apply the plugin to your Gradle build file, along with the `java-library`
 ```
 plugins {
     id("java-library")
-    id("com.mrcjkb.githob.module-finder") version "0.0.0"
+    id("com.mrcjkb.github.module-finder") version "0.0.0"
 }
 ```
 
@@ -42,7 +42,7 @@ plugins {
 ```
 plugins {
     id "java-library"
-    id "com.mrcjkb.githob.module-finder" version "0.0.0"
+    id "com.mrcjkb.github.module-finder" version "0.0.0"
 }
 ```
 
