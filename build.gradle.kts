@@ -138,7 +138,7 @@ fun configurePublication(project: Project) {
           }
           licenses {
             license {
-              name.set("GPLv2 with Classpath Exception")
+              name.set("GPLv2")
               url.set("https://github.com/MrcJkb/gradle-module-finder/blob/main/LICENSE")
               distribution.set("repo")
             }
