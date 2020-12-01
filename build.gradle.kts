@@ -49,7 +49,7 @@ gradlePlugin {
 
 pluginBundle {
   website = "https://github.com/MrcJkb/module-finder"
-  vcsUrl = "https://github.com:MrcJkb/module-finder.git"
+  vcsUrl = "https://github.com/MrcJkb/module-finder.git"
   tags = listOf("java", "modularity", "jigsaw", "jpms", "automatic-module-name")
 }
 
