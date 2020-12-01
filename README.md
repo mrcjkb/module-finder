@@ -1,6 +1,9 @@
 # Gradle module-finder plugin
 Gradle plugin that enables the use of non-modular Java dependencies without an "Automatic Module Name" in their manifest.
 
+# Status: DRAFT
+This plugin has not yet been published.
+
 # Requires
 - Gradle 6.4+
 
@@ -34,7 +37,7 @@ Simply apply the plugin to your Gradle build file, along with the `java-library`
 ```
 plugins {
     id("java-library")
-    id("com.mrcjkb.github.module-finder") version "0.0.0"
+    id("com.mrcjkb.github.module-finder") version "0.0.2"
 }
 ```
 
@@ -42,7 +45,7 @@ plugins {
 ```
 plugins {
     id "java-library"
-    id "com.mrcjkb.github.module-finder" version "0.0.0"
+    id "com.mrcjkb.github.module-finder" version "0.0.2"
 }
 ```
 
