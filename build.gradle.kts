@@ -37,11 +37,13 @@ dependencies {
 }
 
 gradlePlugin {
-  create("module-finder") {
-    id = "$group.module-finder"
-    displayName = "Module Finder"
-    implementationClass = "$group.gradle.modulefinder.ModuleFinderPlugin"
-    description = "Enables the use of non-modular Java dependencies without an \"Automatic Module Name\" attribute in their manifest."
+  plugins {
+    create("module-finder") {
+      id = "$group.module-finder"
+      displayName = "Module Finder"
+      implementationClass = "$group.gradle.modulefinder.ModuleFinderPlugin"
+      description = "Enables the use of non-modular Java dependencies without an \"Automatic Module Name\" attribute in their manifest."
+    }
   }
 }
 
