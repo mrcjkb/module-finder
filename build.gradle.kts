@@ -36,6 +36,21 @@ dependencies {
   implementation(gradleApi())
 }
 
+gradlePlugin {
+  create("module-finder") {
+    id = "$group.module-finder"
+    displayName = "Module Finder"
+    implementationClass = "$group.gradle.modulefinder.ModuleFinderPlugin"
+    description = "Enables the use of non-modular Java dependencies without an \"Automatic Module Name\" attribute in their manifest."
+  }
+}
+
+pluginBundle {
+  website = "https://github.com/MrcJkb/gradle-module-finder"
+  vcsUrl = "https:git@github.com:MrcJkb/gradle-module-finder.git"
+  tags = listOf("java", "modularity", "jigsaw", "jpms", "automatic-module-name")
+}
+
 tasks.jar {
   val javaVersion = System.getProperty("java.version")
   val javaVendor = System.getProperty("java.vendor")
