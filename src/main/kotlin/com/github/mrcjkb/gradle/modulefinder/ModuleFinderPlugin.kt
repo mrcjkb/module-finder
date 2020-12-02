@@ -20,8 +20,8 @@ class ModuleFinderPlugin: Plugin<Project> {
             throw IllegalStateException("The module-finder plugin requires Gradle 6.4 or above.")
         }
         target.plugins.withType(JavaPlugin::class.java).configureEach {
-            val artifactType: Attribute<String> = Attribute.of("artifactType", String::class.java)
-            val javaModule: Attribute<Boolean> = Attribute.of("javaModule", Boolean::class.java)
+            val artifactType: Attribute<String> = Attribute.of("artifactType", String::class.javaObjectType)
+            val javaModule: Attribute<Boolean> = Attribute.of("javaModule", Boolean::class.javaObjectType)
 
             // compile and runtime classpath express that they only accept modules by requesting the javaModule=true attribute
             target.configurations.matching { it?.let { isNonTestResolvingJavaPluginConfiguration(it) }?:false }
