@@ -5,9 +5,8 @@ plugins {
   kotlin("jvm") version "1.4.21"
   id("org.jetbrains.kotlin.plugin.jpa") version "1.4.21"
   id("org.jetbrains.kotlin.plugin.noarg") version "1.4.21"
-  java
   idea
-  id ("java-library")
+  `java-library`
   id("com.palantir.git-version") version "0.12.3"
   `java-gradle-plugin`
   id("com.gradle.plugin-publish") version "0.12.0"
