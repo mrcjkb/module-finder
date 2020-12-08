@@ -74,11 +74,4 @@ abstract class AutomaticModuleTransform: TransformAction<TransformParameters.Non
         }
     }
 
-    private fun deriveModuleName(jarName: String): String {
-        return "-(\\d+(\\.|$))*".toRegex().split(jarName)[0]
-                .replace("[^A-Za-z0-9]".toRegex(), ".")
-                .replace("\\.+".toRegex(), ".")
-                .trim('.')
-    }
-
 }
