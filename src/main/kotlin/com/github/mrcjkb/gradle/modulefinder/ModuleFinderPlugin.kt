@@ -4,6 +4,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.attributes.Attribute
+import org.gradle.api.plugins.JavaLibraryPlugin
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.util.VersionNumber
 
@@ -16,6 +17,9 @@ import org.gradle.util.VersionNumber
 class ModuleFinderPlugin: Plugin<Project> {
 
     override fun apply(target: Project) {
+
+        target.plugins.apply(JavaLibraryPlugin::class.java)
+
         if (VersionNumber.parse(target.gradle.gradleVersion) < VersionNumber.parse("6.4-rc-1")) {
             throw IllegalStateException("The module-finder plugin requires Gradle 6.4 or above.")
         }
