@@ -31,23 +31,7 @@ If none of the above apply, this plugin performs a [transform](https://docs.grad
 As an example, a JAR file named “foo-bar-1.2.3.jar" will derive a module name "foo.bar".
 
 # Usage
-Simply apply the plugin to your Gradle build file, along with the `java-library` plugin.
-
-## Kotlin DSL
-```
-plugins {
-    id("java-library")
-    id("com.mrcjkb.github.module-finder") version "0.0.3"
-}
-```
-
-## Groovy DSL
-```
-plugins {
-    id "java-library"
-    id "com.mrcjkb.github.module-finder" version "0.0.3"
-}
-```
+Simply apply the plugin to your Gradle build file. The `java-library` plugin is applied automatically.
 
 # Credits
 This plugin is inspired by the [extra-java-module-info plugin version 0.3 by jjohannes](https://github.com/jjohannes/extra-java-module-info), licensed under the [Apache License 2.0](https://github.com/jjohannes/extra-java-module-info/blob/master/LICENSE), &copy; 2020
