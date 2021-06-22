@@ -62,12 +62,15 @@ abstract class AutomaticModuleTransform: TransformAction<TransformParameters.Non
                 return@run manifest
             }
             manifest.mainAttributes.putValue("Automatic-Module-Name", moduleName)
+            val exclude = Regex("^META-INF/[^/]+\\.(SF|RSA|DSA|sf|rsa|dsa)$")
             JarOutputStream(FileOutputStream(moduleJar), manifest).use { outputStream ->
                 var jarEntry = inputStream.nextJarEntry
                 while (jarEntry != null) {
-                    outputStream.putNextEntry(jarEntry)
-                    outputStream.write(inputStream.readAllBytes())
-                    outputStream.closeEntry()
+                    if (!exclude.matches(jarEntry.name)) {
+                        outputStream.putNextEntry(jarEntry)
+                        outputStream.write(inputStream.readAllBytes())
+                        outputStream.closeEntry()
+                    }
                     jarEntry = inputStream.nextJarEntry
                 }
             }
