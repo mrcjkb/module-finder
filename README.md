@@ -1,6 +1,14 @@
 # Gradle module-finder plugin
 Gradle plugin that enables the use of non-modular Java dependencies without an "Automatic Module Name" in their manifest.
 
+> [![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://bitbucket.org/lbesson/ansi-colors) 
+>
+> __NOTE:__
+>
+>  Since I hardly work with Java these days, I will no longer be actively maintaining this plugin.
+> I will gladly review PRs, but if you want a more actively maintained alternative,
+> I recommend the [extra-java-module-info](https://github.com/gradlex-org/extra-java-module-info) plugin.
+
 # Latest release
 The latest release is available on the [Gradle plugin page](https://plugins.gradle.org/plugin/com.github.mrcjkb.module-finder).
 
